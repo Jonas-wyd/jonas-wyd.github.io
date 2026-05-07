@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Meister Teil 3 & 4 Lernplattform | Wayand</title>
+    <meta
+      name="description"
+      content="Prüfungsnahe Lernplattform von Wayand für HWK Meister Teil 3 und 4 mit einfacher Modulauswahl, Fallfragen und direkter Auswertung."
+    />
+    <meta
+      name="keywords"
+      content="HWK Meister Teil 3, HWK Meister Teil 4, AEVO, Meisterprüfung üben, Fallfragen, Wayand"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+    <script defer src="js/app.js"></script>
+  </head>
+  <body>
+    <div class="site-bg" aria-hidden="true"></div>
+    <div class="page-shell">
+      <header class="topbar fade-in">
+        <a href="#" class="brand-mark" aria-label="Startseite">
+          <img
+            class="logo-mark"
+            src="https://i.imgur.com/ZTjVg1B.png"
+            alt="Wayand Logo"
+          />
+          <span class="brand-copy">
+            <strong>Wayand</strong>
+            <span>Meister Lernplattform</span>
+          </span>
+        </a>
+
+        <nav class="topnav" aria-label="Schnellnavigation">
+          <a href="#moduleSection">Module</a>
+          <a href="#topicSection">Felder</a>
+          <a href="#quizSection">Trainer</a>
+        </nav>
+      </header>
+
+      <main>
+        <section class="hero fade-in">
+          <div class="hero-main card">
+            <span class="eyebrow">HWK Meister Teil 3 + Teil 4</span>
+            <h1>Prüfungsnah üben. Klar aufgebaut. Ohne unnötiges Drumherum.</h1>
+            <p class="subtitle">
+              Für ernsthaftes Training mit selbst formulierten Fallfragen,
+              direkter Auswertung und einfacher Auswahl nach Meisterteil und
+              Handlungsfeld.
+            </p>
+
+            <div class="hero-meta">
+              <span id="totalQuestionsValue">0 Fragen aktiv</span>
+              <span id="selectedModulesValue">0 Module aktiv</span>
+              <span id="selectedTopicsValue">0 Felder aktiv</span>
+            </div>
+
+            <div class="info-grid">
+              <article class="info-pill">
+                <strong>Teil 3</strong>
+                <span>BWL, Recht, Führung</span>
+              </article>
+              <article class="info-pill">
+                <strong>Teil 4</strong>
+                <span>AEVO-Handlungsfelder</span>
+              </article>
+              <article class="info-pill">
+                <strong>Modus</strong>
+                <span>1 Frage pro Runde</span>
+              </article>
+            </div>
+
+            <div class="legal-box">
+              <strong>Rechtlich sauber</strong>
+              <p>
+                Keine offizielle IHK- oder HWK-Prüfungsplattform. Keine
+                Originalfragen. Alle Fälle sind eigenständig formulierte
+                Trainingsfragen auf Basis allgemeiner Prüfungsstrukturen.
+              </p>
+            </div>
+          </div>
+
+          <aside class="start-panel card">
+            <div class="panel-head">
+              <h2>Training starten</h2>
+              <p id="selectionNote" class="selection-note">
+                Alle Module sind aktiv.
+              </p>
+            </div>
+
+            <div class="setting-group">
+              <label for="questionCountSelect">Fragenanzahl</label>
+              <select id="questionCountSelect" class="app-select">
+                <option value="10">10 Fragen</option>
+                <option value="20" selected>20 Fragen</option>
+                <option value="30">30 Fragen</option>
+                <option value="all">Alle Fragen</option>
+              </select>
+            </div>
+
+            <label class="check-row subtle" for="shuffleCheckbox">
+              <input id="shuffleCheckbox" type="checkbox" />
+              <span>Themenfolge mischen</span>
+            </label>
+
+            <label class="check-row subtle" for="shuffleAnswersCheckbox">
+              <input id="shuffleAnswersCheckbox" type="checkbox" checked />
+              <span>Antworten mischen</span>
+            </label>
+
+            <label class="check-row" for="consentCheckbox">
+              <input id="consentCheckbox" type="checkbox" />
+              <span>Hinweis verstanden</span>
+            </label>
+
+            <button id="startButton" class="primary-button" disabled>
+              Training starten
+            </button>
+            <button id="restartSavedButton" class="secondary-button hidden">
+              Neu beginnen
+            </button>
+            <p id="saveHint" class="save-hint" aria-live="polite"></p>
+          </aside>
+        </section>
+
+        <section id="moduleSection" class="module-section fade-in">
+          <div class="section-head">
+            <div>
+              <p class="section-label">Module</p>
+              <h2>Welchen Meisterteil möchten Sie trainieren?</h2>
+            </div>
+            <button id="selectAllModulesButton" class="ghost-button" type="button">
+              Alle Module
+            </button>
+          </div>
+
+          <div id="moduleSelection" class="module-grid"></div>
+        </section>
+
+        <section id="topicSection" class="topic-section fade-in">
+          <div class="section-head">
+            <div>
+              <p class="section-label">Handlungsfelder</p>
+              <h2>Gezielt Themen auswählen</h2>
+            </div>
+            <div class="toolbar">
+              <button id="selectAllTopicsButton" class="ghost-button" type="button">
+                Alle Felder
+              </button>
+              <button id="clearTopicsButton" class="ghost-button" type="button">
+                Alle abwählen
+              </button>
+            </div>
+          </div>
+
+          <div id="topicSelection" class="topic-grid"></div>
+        </section>
+
+        <section class="level-section fade-in">
+          <div class="section-head">
+            <div>
+              <p class="section-label">Schwierigkeit</p>
+              <h2>Aktiver Fragenpool</h2>
+            </div>
+          </div>
+
+          <div class="level-grid">
+            <article class="card level-card">
+              <span class="module-level basis">Leicht</span>
+              <strong id="leichtCountValue">0 Fragen</strong>
+            </article>
+            <article class="card level-card">
+              <span class="module-level mittel">Mittel</span>
+              <strong id="mittelCountValue">0 Fragen</strong>
+            </article>
+            <article class="card level-card">
+              <span class="module-level schwer">Schwer</span>
+              <strong id="schwerCountValue">0 Fragen</strong>
+            </article>
+          </div>
+        </section>
+
+        <section id="quizSection" class="quiz-section hidden fade-in" aria-live="polite">
+          <div class="card quiz-card">
+            <div class="quiz-topbar">
+              <div>
+                <p class="section-label">Trainer</p>
+                <h2>Prüfungsrunde</h2>
+              </div>
+              <div class="score-box">
+                <span>Punktestand</span>
+                <strong id="scoreValue">0</strong>
+              </div>
+            </div>
+
+            <div class="progress-meta">
+              <span id="questionCounter">Frage 1 von 1</span>
+              <div class="badge-row">
+                <span id="moduleBadge" class="module-badge">Modul</span>
+                <span id="topicBadge" class="topic-badge">Thema</span>
+                <span id="difficultyBadge" class="difficulty-badge">Leicht</span>
+              </div>
+            </div>
+
+            <div class="progress-track" aria-hidden="true">
+              <div id="progressBar" class="progress-bar"></div>
+            </div>
+
+            <div class="question-block">
+              <h3 id="questionText">Frage wird geladen...</h3>
+              <div id="answerList" class="answer-list"></div>
+            </div>
+
+            <div id="feedbackBox" class="feedback-box hidden">
+              <h4 id="feedbackTitle">Auswertung</h4>
+              <p id="feedbackText"></p>
+              <p id="explanationText" class="explanation-text"></p>
+            </div>
+
+            <div class="quiz-actions">
+              <button id="nextButton" class="primary-button" disabled>
+                Nächste Frage
+              </button>
+              <button id="restartButton" class="secondary-button">
+                Neu starten
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <section class="instagram-wrap fade-in">
+          <div class="card instagram-card">
+            <div class="instagram-copy">
+              <p class="section-label">Wayand</p>
+              <h2>Ausbildung und echte Baustellen</h2>
+              <p>
+                Die Lernplattform soll beim Üben helfen und gleichzeitig zeigen,
+                wofür Wayand als Malerfachbetrieb steht: saubere Arbeit,
+                Ausbildung und Praxisnähe.
+              </p>
+              <a
+                class="instagram-link"
+                href="https://www.instagram.com/malerfachbetrieb.wayand/"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Instagram ansehen
+              </a>
+            </div>
+
+            <div class="instagram-side" aria-hidden="true">
+              <span class="instagram-mini">Malerfachbetrieb Wayand</span>
+              <strong>Einblicke in echte Projekte und Ausbildung</strong>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer class="footer">
+        <p>
+          Eigenständige Meister-Lernplattform von Wayand. Keine offizielle
+          IHK- oder HWK-Prüfung.
+        </p>
+      </footer>
+    </div>
+  </body>
+</html>
